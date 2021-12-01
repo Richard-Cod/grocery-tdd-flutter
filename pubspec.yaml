@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.16.0-31.0.dev <3.0.0"
 
 dependencies:
+  flutter_svg: ^0.23.0+1
   flutter_native_splash: ^1.3.2
   flutter:
     sdk: flutter
@@ -37,9 +38,10 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - assets/file.txt
+    - assets/
+    - assets/images/
     - assets/splash/
-    - assets/splash/products.json
+    - assets/icons/
     - fixtures/
 
   # The following line ensures that the Material Icons font is

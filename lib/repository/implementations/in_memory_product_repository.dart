@@ -1,6 +1,6 @@
-import 'package:grocery/core/getJson.dart';
+import 'package:grocery/core/get_json.dart';
 import 'package:grocery/models/product.dart';
-import 'package:grocery/repository/contracts/IProductRepository.dart';
+import 'package:grocery/repository/contracts/i_product_repository.dart';
 
 class InMemoryProductRepository implements IProductRepository {
   Future<List<Product>> _getProducts(String path) async {

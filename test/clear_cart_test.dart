@@ -1,8 +1,8 @@
-import 'package:grocery/models/Cart.dart';
+import 'package:grocery/models/cart.dart';
 import 'package:grocery/models/product.dart';
-import 'package:grocery/repository/contracts/ICartRepository.dart';
-import 'package:grocery/repository/implementations/InMemoryCartRepository.dart';
-import 'package:grocery/repository/implementations/InMemoryProductRepository.dart';
+import 'package:grocery/repository/contracts/i_cart_repository.dart';
+import 'package:grocery/repository/implementations/in_memory_cart_repository.dart';
+import 'package:grocery/repository/implementations/in_memory_product_repository.dart';
 import 'package:test/test.dart';
 
 void main() {

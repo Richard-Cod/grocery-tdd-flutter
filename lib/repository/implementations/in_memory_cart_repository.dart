@@ -1,7 +1,7 @@
-import 'package:grocery/models/CartItem.dart';
+import 'package:grocery/models/cart_item.dart';
 import 'package:grocery/models/product.dart';
-import 'package:grocery/models/Cart.dart';
-import 'package:grocery/repository/contracts/ICartRepository.dart';
+import 'package:grocery/models/cart.dart';
+import 'package:grocery/repository/contracts/i_cart_repository.dart';
 
 class InMemoryCartRepository implements ICartRepository {
   @override

@@ -1,5 +1,4 @@
-import 'package:grocery/models/CartItem.dart';
-import 'package:grocery/models/product.dart';
+import 'package:grocery/models/cart_item.dart';
 
 class Cart {
   int id;

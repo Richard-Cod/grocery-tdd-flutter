@@ -1,6 +1,6 @@
-import 'package:grocery/core/getJson.dart';
+import 'package:grocery/core/get_json.dart';
 import 'package:grocery/models/category.dart';
-import 'package:grocery/repository/contracts/ICategoryRepository.dart';
+import 'package:grocery/repository/contracts/I_category_repository.dart';
 
 class InMemoryCategoryRepository implements ICategoryRepository {
   Future<List<Category>> _getCategories() async {

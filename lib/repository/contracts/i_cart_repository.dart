@@ -1,4 +1,4 @@
-import 'package:grocery/models/Cart.dart';
+import 'package:grocery/models/cart.dart';
 import 'package:grocery/models/product.dart';
 
 import '../../models/product.dart';

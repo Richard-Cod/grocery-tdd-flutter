@@ -1,6 +1,6 @@
 import 'package:grocery/models/category.dart';
-import 'package:grocery/repository/contracts/ICategoryRepository.dart';
-import 'package:grocery/repository/implementations/InMemoryCategoryRepository.dart';
+import 'package:grocery/repository/contracts/i_category_repository.dart';
+import 'package:grocery/repository/implementations/in_memory_category_repository.dart';
 import 'package:test/test.dart';
 
 void main() {
