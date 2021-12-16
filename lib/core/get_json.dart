@@ -1,8 +1,20 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart';
+
 getJson(path) async {
-  final file = File('fixtures/$path');
-  final json = jsonDecode(await file.readAsString());
-  return json;
+  final fixturesPath = 'fixtures/$path';
+  var string;
+
+  bool condition = Platform.environment.containsKey('FLUTTER_TEST');
+
+  if (condition) {
+    var file = File(fixturesPath);
+    string = await file.readAsString();
+  } else {
+    string = await rootBundle.loadString(fixturesPath);
+  }
+
+  return jsonDecode(string);
 }

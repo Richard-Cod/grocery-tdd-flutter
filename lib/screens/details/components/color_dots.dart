@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/components/rounded_icon_btn.dart';
-import 'package:grocery/demodatas/Product.dart';
+import 'package:grocery/models/product.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -15,6 +15,7 @@ class ColorDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(product.colors);
     final sizeConfig = SizeConfig(context);
     // Now this is fixed and only for demo
     int selectedColor = 3;
@@ -26,7 +27,7 @@ class ColorDots extends StatelessWidget {
           ...List.generate(
             product.colors.length,
             (index) => ColorDot(
-              color: product.colors[index],
+              color: Color(product.colors[index]),
               isSelected: index == selectedColor,
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/components/default_button.dart';
-import 'package:grocery/demodatas/Product.dart';
+import 'package:grocery/models/product.dart';
 import 'package:grocery/size_config.dart';
 
 import 'color_dots.dart';

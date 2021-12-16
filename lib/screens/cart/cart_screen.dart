@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/demodatas/Cart.dart';
+import 'package:grocery/viewmodels/cart_vm.dart';
 
 import 'components/body.dart';
 import 'components/check_out_card.dart';
@@ -25,10 +26,10 @@ class CartScreen extends StatelessWidget {
             "Your Cart",
             style: TextStyle(color: Colors.black),
           ),
-          Text(
-            "${demoCarts.length} items",
-            style: Theme.of(context).textTheme.caption,
-          ),
+          // Text(
+          //   "${cart.length} items",
+          //   style: Theme.of(context).textTheme.caption,
+          // ),
         ],
       ),
     );

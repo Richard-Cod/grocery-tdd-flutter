@@ -1,19 +1,19 @@
 [{
     "id": 1,
     "title": "Relish",
-    "image": "http://dummyimage.com/224x100.png/ff4444/ffffff",
+    "image": "https://images.pexels.com/photos/3965545/pexels-photo-3965545.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     "price": 24,
     "description": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
   }, {
     "id": 2,
     "title": "Figs",
-    "image": "http://dummyimage.com/180x100.png/dddddd/000000",
+    "image": "https://images.pexels.com/photos/3965545/pexels-photo-3965545.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     "price": 48,
     "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst."
   }, {
     "id": 3,
     "title": "Cheese - Parmesan Cubes",
-    "image": "http://dummyimage.com/181x100.png/5fa2dd/ffffff",
+    "image": "https://images.pexels.com/photos/3965545/pexels-photo-3965545.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     "price": 92,
     "description": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi."
   }, {

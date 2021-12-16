@@ -15,7 +15,11 @@ class InMemoryCartRepository implements ICartRepository {
       cart.cartItems[index].quantity += quantityToIncrease;
     } else {
       cart.cartItems.add(CartItem(
-          id: 1, cartId: 1, quantity: quantityToIncrease, product: product));
+        id: 1,
+        cartId: 1,
+        quantity: quantityToIncrease,
+        product: product,
+      ));
     }
   }
 
@@ -34,5 +38,24 @@ class InMemoryCartRepository implements ICartRepository {
   @override
   Future<void> clearCart(Cart cart) async {
     cart.cartItems.clear();
+  }
+
+  @override
+  Future<List<CartItem>> getItems(Cart cart) {
+    return Future.value(cart.cartItems);
+  }
+
+  @override
+  Future<void> decreaseProductQuantity(Cart cart, Product product) async {
+    final int index = cart.cartItems
+        .indexWhere((element) => element.product.id == product.id);
+    final bool productExist = index >= 0;
+
+    if (productExist) {
+      final variable = cart.cartItems[index];
+      print(variable.quantity - 1 == 0);
+      if (variable.quantity - 1 == 0) return removeProduct(cart, product);
+      variable.quantity -= 1;
+    }
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/demodatas/Product.dart';
-
+import 'package:grocery/models/product.dart';
 import 'components/body.dart';
 import 'components/custom_app_bar.dart';
 
@@ -15,7 +14,7 @@ class DetailsScreen extends StatelessWidget {
       backgroundColor: Color(0xFFF5F6F9),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-        child: CustomAppBar(rating: 6),
+        child: CustomAppBar(rating: agrs.product.rating),
       ),
       body: Body(product: agrs.product),
     );

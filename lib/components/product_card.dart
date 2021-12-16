@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grocery/demodatas/Product.dart';
+import 'package:grocery/models/product.dart';
 import 'package:grocery/screens/details/details_screen.dart';
 
 import '../constants.dart';
@@ -46,7 +46,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image.asset(product.images[0]),
+                    child: Image.network(product.image),
                   ),
                 ),
               ),
@@ -76,14 +76,14 @@ class ProductCard extends StatelessWidget {
                       height: sizeConfig.getProportionateScreenWidth(28),
                       width: sizeConfig.getProportionateScreenWidth(28),
                       decoration: BoxDecoration(
-                        color: product.isFavourite
+                        color: false
                             ? kPrimaryColor.withOpacity(0.15)
                             : kSecondaryColor.withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
                         "assets/icons/Heart Icon_2.svg",
-                        color: product.isFavourite
+                        color: product.isLiked
                             ? Color(0xFFFF4848)
                             : Color(0xFFDBDEE4),
                       ),

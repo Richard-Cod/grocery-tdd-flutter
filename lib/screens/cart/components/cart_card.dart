@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/demodatas/Cart.dart';
+import 'package:grocery/models/cart_item.dart';
+import 'package:grocery/viewmodels/cart_vm.dart';
 
 import '../../../constants.dart';
+import '../../../models/cart.dart';
 import '../../../size_config.dart';
 
-class CartCard extends StatelessWidget {
+class CartCard extends StatefulWidget {
   const CartCard({
     Key? key,
-    required this.cart,
+    required this.cartItem,
+    required this.cartVM,
   }) : super(key: key);
 
-  final Cart cart;
+  final CartItem cartItem;
+  final CartVM cartVM;
+
+  @override
+  State<CartCard> createState() => _CartCardState(cartItem, cartVM);
+}
+
+class _CartCardState extends State<CartCard> {
+  final CartItem cartItem;
+  final CartVM cartVM;
+
+  _CartCardState(this.cartItem, this.cartVM);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +43,7 @@ class CartCard extends StatelessWidget {
                 color: Color(0xFFF5F6F9),
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image.asset(cart.product.images[0]),
+              child: Image.network(widget.cartItem.product.image),
             ),
           ),
         ),
@@ -38,22 +52,47 @@ class CartCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              cart.product.title,
+              widget.cartItem.product.title,
               style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 2,
             ),
             SizedBox(height: 10),
             Text.rich(
               TextSpan(
-                text: "\$${cart.product.price}",
+                text: "\$${widget.cartItem.product.price}",
                 style: TextStyle(
                     fontWeight: FontWeight.w600, color: kPrimaryColor),
                 children: [
                   TextSpan(
-                      text: " x${cart.numOfItem}",
+                      text: " x${widget.cartItem.quantity}",
                       style: Theme.of(context).textTheme.bodyText1),
                 ],
               ),
+            ),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () => {
+                    setState(() {
+                      cartVM.incrementProductQuantity(cartItem);
+                    })
+                  },
+                  icon: Icon(Icons.plus_one),
+                  label: Text(""),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => {
+                    setState(() {
+                      cartVM.decrementProductQuantity(cartItem);
+                    })
+                  },
+                  icon: Icon(Icons.exposure_neg_1_outlined),
+                  label: Text(""),
+                ),
+              ],
             )
           ],
         )
