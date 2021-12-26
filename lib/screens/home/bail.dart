@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/StateHelper.dart';
+
 class FutureBuilderHelperClass {
   static final Widget kDefaultLoader = Column(
     children: const [
@@ -32,5 +34,23 @@ class FutureBuilderHelperClass {
         return children;
       },
     );
+  }
+
+  static getWidgetFromStateHelper(
+      StateHelper stateHelper, Function hasDataWidget, Function hasErrorWidget,
+      {dynamic loaderWidgetBuilder}) {
+    if (stateHelper.error != null) {
+      return hasErrorWidget(stateHelper.error);
+    }
+
+    if (stateHelper.loading) {
+      return kDefaultLoader;
+    }
+
+    if (stateHelper.emptyData == 0) {
+      return Text("Aucune donnée pour le moment ");
+    }
+
+    return hasDataWidget(stateHelper.data);
   }
 }

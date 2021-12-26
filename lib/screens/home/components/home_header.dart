@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/StateManagement/HomeSM.dart';
 import 'package:grocery/screens/cart/cart_screen.dart';
+import 'package:provider/src/provider.dart';
 
+import '../../../StateManagement/CartSM.dart';
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
 import 'search_field.dart';
@@ -24,10 +27,11 @@ class HomeHeader extends StatelessWidget {
           IconBtnWithCounter(
             svgSrc: "assets/icons/Cart Icon.svg",
             press: () => Navigator.pushNamed(context, CartScreen.routeName),
+            numOfitem: context.watch<CartSM>().cart.cartItems.length,
           ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Bell.svg",
-            numOfitem: 3,
+            numOfitem: context.watch<HomeSM>().notifications.length,
             press: () {},
           ),
         ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grocery/StateManagement/CartSM.dart';
+import 'package:provider/src/provider.dart';
 import '../../../models/cart.dart';
 import '../../../size_config.dart';
 import '../../../viewmodels/cart_vm.dart';
@@ -20,18 +22,8 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     final sizeConfig = SizeConfig(context);
-    final CartVM cartVM = CartVM();
 
-    return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: sizeConfig.getProportionateScreenWidth(20)),
-        child: getCartFutureBuilder(cartVM));
-  }
-
-  FutureBuilder getCartFutureBuilder(CartVM cartVM) {
-    final Future<Cart> _calculation = cartVM.getCart();
-
-    Widget hasErrorWidget(snapshot) {
+    Widget hasErrorWidget(error) {
       return Column(
         children: [
           Icon(
@@ -41,14 +33,14 @@ class _BodyState extends State<Body> {
           ),
           Padding(
             padding: EdgeInsets.only(top: 16),
-            child: Text('Error: ${snapshot.error}'),
+            child: Text('Error: ${error}'),
           )
         ],
       );
     }
 
-    hasDataWidget(snapshot) {
-      Cart cart = snapshot.data;
+    hasDataWidget(data) {
+      Cart cart = data;
 
       return SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -63,9 +55,9 @@ class _BodyState extends State<Body> {
                     key: Key(cart.cartItems[index].product.id.toString()),
                     direction: DismissDirection.endToStart,
                     onDismissed: (direction) {
-                      setState(() {
-                        cartVM.removeItem(cart.cartItems[index]);
-                      });
+                      context
+                          .read<CartSM>()
+                          .removeProduct(cart.cartItems[index]);
                     },
                     background: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -80,10 +72,7 @@ class _BodyState extends State<Body> {
                         ],
                       ),
                     ),
-                    child: CartCard(
-                      cartItem: cart.cartItems[index],
-                      cartVM: cartVM,
-                    ),
+                    child: CartCard(cartItem: cart.cartItems[index]),
                   ),
                 );
               },
@@ -95,13 +84,11 @@ class _BodyState extends State<Body> {
       );
     }
 
-    final cartItemsFutureBuilder =
-        FutureBuilderHelperClass.getFutureBuilderHelper(
-      _calculation,
-      hasDataWidget,
-      hasErrorWidget,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: sizeConfig.getProportionateScreenWidth(20)),
+      child: FutureBuilderHelperClass.getWidgetFromStateHelper(
+          context.watch<CartSM>().cartState, hasDataWidget, hasErrorWidget),
     );
-
-    return cartItemsFutureBuilder;
   }
 }

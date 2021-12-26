@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
+import '../../../main.dart';
 import '../../../size_config.dart';
 import 'categories.dart';
 import 'discount_banner.dart';

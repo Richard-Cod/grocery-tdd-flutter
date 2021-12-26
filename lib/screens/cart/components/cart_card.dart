@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery/StateManagement/CartSM.dart';
 import 'package:grocery/models/cart_item.dart';
 import 'package:grocery/viewmodels/cart_vm.dart';
+import 'package:provider/src/provider.dart';
 
 import '../../../constants.dart';
 import '../../../models/cart.dart';
@@ -10,21 +12,18 @@ class CartCard extends StatefulWidget {
   const CartCard({
     Key? key,
     required this.cartItem,
-    required this.cartVM,
   }) : super(key: key);
 
   final CartItem cartItem;
-  final CartVM cartVM;
 
   @override
-  State<CartCard> createState() => _CartCardState(cartItem, cartVM);
+  State<CartCard> createState() => _CartCardState(cartItem);
 }
 
 class _CartCardState extends State<CartCard> {
   final CartItem cartItem;
-  final CartVM cartVM;
 
-  _CartCardState(this.cartItem, this.cartVM);
+  _CartCardState(this.cartItem);
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +72,7 @@ class _CartCardState extends State<CartCard> {
               children: [
                 ElevatedButton.icon(
                   onPressed: () => {
-                    setState(() {
-                      cartVM.incrementProductQuantity(cartItem);
-                    })
+                    context.read<CartSM>().incrementProductQuantity(cartItem)
                   },
                   icon: Icon(Icons.plus_one),
                   label: Text(""),
@@ -85,9 +82,7 @@ class _CartCardState extends State<CartCard> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () => {
-                    setState(() {
-                      cartVM.decrementProductQuantity(cartItem);
-                    })
+                    context.read<CartSM>().decrementProductQuantity(cartItem)
                   },
                   icon: Icon(Icons.exposure_neg_1_outlined),
                   label: Text(""),

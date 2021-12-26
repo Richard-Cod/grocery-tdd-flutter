@@ -22,4 +22,12 @@ class Cart {
     data['cartItems'] = cartItems;
     return data;
   }
+
+  int getTotalPrice() {
+    var total = 0;
+    for (CartItem cartItem in cartItems) {
+      total += cartItem.product.price * cartItem.quantity;
+    }
+    return total;
+  }
 }

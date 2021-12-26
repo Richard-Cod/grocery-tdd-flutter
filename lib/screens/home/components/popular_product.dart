@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/screens/home/bail.dart';
+import 'package:grocery/utils/StateHelper.dart';
 import 'package:grocery/viewmodels/popular_products_vm.dart';
+import 'package:provider/src/provider.dart';
+import '../../../StateManagement/HomeSM.dart';
 import '../../../components/product_card.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
@@ -10,9 +13,7 @@ class PopularProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Future<dynamic> _calculation = PopularProductsVM().getData();
-
-    Widget hasErrorWidget(snapshot) {
+    Widget hasErrorWidget(Error error) {
       return Column(
         children: [
           Icon(
@@ -22,21 +23,21 @@ class PopularProducts extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 16),
-            child: Text('Error: ${snapshot.error}'),
+            child: Text('Error: ${error.toString()}'),
           )
         ],
       );
     }
 
-    hasDataWidget(snapshot) {
+    hasDataWidget(data) {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
             ...List.generate(
-              snapshot.data.length,
+              data.length,
               (index) {
-                return ProductCard(product: snapshot.data[index]);
+                return ProductCard(product: data[index]);
               },
             ),
             SizedBox(
@@ -45,12 +46,6 @@ class PopularProducts extends StatelessWidget {
         ),
       );
     }
-
-    final futureBuilder = FutureBuilderHelperClass.getFutureBuilderHelper(
-      _calculation,
-      hasDataWidget,
-      hasErrorWidget,
-    );
 
     final sizeConfig = SizeConfig(context);
     return Column(
@@ -65,7 +60,10 @@ class PopularProducts extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: futureBuilder,
+          child: FutureBuilderHelperClass.getWidgetFromStateHelper(
+              context.watch<HomeSM>().popularProductsSH,
+              hasDataWidget,
+              hasErrorWidget),
         ),
       ],
     );

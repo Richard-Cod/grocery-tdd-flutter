@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:grocery/StateManagement/CartSM.dart';
 import 'package:grocery/default_button.dart';
+import 'package:provider/src/provider.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -65,12 +67,12 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
+                Text.rich(
                   TextSpan(
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "${context.watch<CartSM>().cart.getTotalPrice()}",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
