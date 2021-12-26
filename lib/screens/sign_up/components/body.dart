@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grocery/components/socal_card.dart';
 import 'package:grocery/constants.dart';
 import 'package:grocery/size_config.dart';
+import 'package:provider/src/provider.dart';
 
+import '../../../StateManagement/RegisterSM.dart';
 import 'sign_up_form.dart';
 
 class Body extends StatelessWidget {
@@ -33,16 +35,20 @@ class Body extends StatelessWidget {
                   children: [
                     SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {},
+                      press: () {
+                        context.read<RegisterSM>().registerWithGoogle();
+                      },
                     ),
                     SocalCard(
                       icon: "assets/icons/facebook-2.svg",
-                      press: () {},
+                      press: () {
+                        context.read<RegisterSM>().registerWithFacebook();
+                      },
                     ),
-                    SocalCard(
-                      icon: "assets/icons/twitter.svg",
-                      press: () {},
-                    ),
+                    // SocalCard(
+                    //   icon: "assets/icons/twitter.svg",
+                    //   press: () {},
+                    // ),
                   ],
                 ),
                 SizedBox(height: sizeConfig.getProportionateScreenHeight(20)),

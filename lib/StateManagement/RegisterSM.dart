@@ -20,4 +20,12 @@ class RegisterSM with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   List<String?> get errors => _errors;
+
+  void registerWithGoogle() {
+    print("registerWithGoogle");
+  }
+
+  void registerWithFacebook() {
+    print("registerWithFacebook");
+  }
 }

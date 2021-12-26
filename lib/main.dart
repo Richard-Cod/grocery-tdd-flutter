@@ -7,6 +7,7 @@ import 'package:grocery/screens/home/home_screen.dart';
 import 'package:grocery/screens/otp/otp_screen.dart';
 import 'package:grocery/screens/sign_in/sign_in_screen.dart';
 import 'package:grocery/screens/sign_up/sign_up_screen.dart';
+import 'package:grocery/screens/splash/splash_screen.dart';
 import 'package:grocery/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Grocery',
         theme: theme(),
-        initialRoute: SignUpScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         routes: routes,
       ),
     );
